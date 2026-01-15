@@ -1,3 +1,5 @@
+import AnimatedSection from '@/components/AnimatedSection';
+// import Navbar from '@/components/NavBar'
 import {
   Award,
   BarChart2,
@@ -54,40 +56,41 @@ const services: { title: string; subtitle: string; Icon: any }[] = [
 
 const Services = () => {
   return (
-    <div>
-      <section id="services" className="bg-[#0A1A44] text-white scroll-mt-28">
-        <div className="max-w-6xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-medium">Our Services</h3>
-            <p className="mt-3 text-sm md:text-base max-w-2xl mx-auto text-slate-300">
-              From audit and compliance to strategic consulting, we provide tailored solutions
-              designed to support growth, transparency, and long-term success.
-            </p>
-          </div>
+    <AnimatedSection>
+      {/* <Navbar /> */}
+      <main id="services" className="w-full pt-20">
+        <section className="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                From audit and compliance to strategic consulting, we provide tailored solutions
+                designed to support growth, transparency, and long-term success.
+              </p>
+            </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map(s => (
-              <article
-                key={s.title}
-                className="bg-white/5 border border-white/10 rounded-lg p-5 hover:shadow-xl transition-shadow focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-400"
-                tabIndex={0}
-                aria-label={s.title}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white/8 flex items-center justify-center">
-                    <s.Icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-semibold">{s.title}</h4>
-                    <p className="mt-2 text-sm text-slate-300">{s.subtitle}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {services.map(s => (
+                <div
+                  key={s.title}
+                  className="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-6 hover:bg-white/20 transition-all hover:shadow-2xl"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                      <s.Icon className="w-6 h-6 text-orange-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold mb-2">{s.title}</h4>
+                      <p className="text-sm text-slate-300">{s.subtitle}</p>
+                    </div>
                   </div>
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </main>
+    </AnimatedSection>
   )
 }
 

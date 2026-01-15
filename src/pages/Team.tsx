@@ -1,4 +1,5 @@
 import TeamModal from '@/components/TeamModal'
+// import Navbar from '@/components/NavBar'
 import team1 from '../assets/samplepic.png'
 import team8 from '../assets/team10.png'
 import team2 from '../assets/team2.png'
@@ -10,6 +11,7 @@ import team7 from '../assets/team7.png'
 import team9 from '../assets/team8.png'
 import team10 from '../assets/team9.png'
 import { useState } from 'react'
+import AnimatedSection from '@/components/AnimatedSection'
 
 type Person = {
   name: string
@@ -163,40 +165,44 @@ const Team = () => {
   const [selected, setSelected] = useState<Person | null>(null)
 
   return (
-    <div id="team" className="w-full">
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        
-        <div className="text-center mb-10">
-          <h3 className="text-2xl md:text-3xl font-semibold text-slate-900">Meet Our Team</h3>
-          <p className="mt-3 text-sm md:text-base text-slate-600 max-w-2xl mx-auto">
-            A distinguished group of partners and professionals with decades of experience.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {team.map(person => (
-            <div
-              key={person.name}
-              onClick={() => setSelected(person)}
-              className="relative group rounded-lg overflow-hidden shadow-md cursor-pointer"
-            >
-              <img
-                src={person.img}
-                alt={person.name}
-                className="w-full h-70 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-
-              {/* <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-3 text-white">
-                <h4 className="font-semibold">{person.name}</h4>
-                <p className="text-sm opacity-80">{person.role}</p>
-              </div> */}
+    <AnimatedSection>
+      {/* <Navbar /> */}
+      <main id="team" className="w-full pt-20">
+        <section className="bg-gradient-to-b from-slate-50 to-white py-20">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-900">Meet Our Team</h1>
+              <p className="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+                A distinguished group of partners and professionals with decades of combined
+                experience in accounting, auditing, tax, and advisory services.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {team.map(person => (
+                <div
+                  key={person.name}
+                  onClick={() => setSelected(person)}
+                  className="group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer transform hover:-translate-y-2"
+                >
+                  <div className="relative overflow-hidden bg-slate-200 h-80 sm:h-96">
+                    <img
+                      src={person.img}
+                      alt={person.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* <Navbar /> */}
+          </div>
+        </section>
+      </main>
 
       <TeamModal person={selected} onClose={() => setSelected(null)} />
-    </div>
+    </AnimatedSection>
   )
 }
 

@@ -1,5 +1,8 @@
 import { useState } from 'react'
+// import Navbar from '@/components/NavBar'
 import landing from '../assets/landing.png'
+import AnimatedSection from '@/components/AnimatedSection'
+// import PageHeader from '@/components/PageHeader'
 
 const AboutUs = () => {
   const [activeTab, setActiveTab] = useState<'mission' | 'vision' | 'story'>('mission')
@@ -28,62 +31,123 @@ const AboutUs = () => {
     },
   ]
   return (
-    <div className="w-full">
-      {/* ABOUT SECTION */}
-      <section id="about" className="max-w-6xl mx-auto px-4 py-16 scroll-mt-28">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold text-slate-900">
-            Built on Trust, Driven by Results
-          </h2>
-          <p className="mt-3 text-sm md:text-base text-slate-600 max-w-2xl mx-auto">
-            For over two decades, we’ve been helping businesses and individuals make confident
-            financial decisions through expert guidance.
-          </p>
-        </div>
+    <AnimatedSection>
+      {/* <Navbar /> */}
+      <main id="about" className="w-full pt-20">
+        <section className="max-w-6xl mx-auto px-4 py-20">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900">
+              Built on Trust, Driven by Results
+            </h1>
+            <p className="mt-4 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+              For over two decades, we've been helping businesses and individuals make confident
+              financial decisions through expert guidance and unwavering commitment.
+            </p>
+          </div>
 
-        <div className="mt-10 flex flex-col lg:flex-row lg:gap-16">
-          <div className="mt-10 gap-8 items-center">
-            <div className="">
-              <div className=" w-70 rounded-xl overflow-hidden shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Image Section */}
+            <div className="flex justify-center">
+              <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={landing}
                   alt="Team collaborating"
-                  className="w-full h-64 md:h-80 object-cover"
+                  className="w-full h-96 md:h-[500px] object-cover"
                 />
               </div>
             </div>
+
+            {/* Content Section */}
+            <div className="space-y-6">
+              <div className="flex gap-3 flex-wrap">
+                {tabs.map(t => (
+                  <button
+                    key={t.key}
+                    onClick={() => setActiveTab(t.key)}
+                    className={`px-6 py-2 rounded-full border-2 transition-all text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400 ${
+                      activeTab === t.key
+                        ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                        : 'bg-white text-slate-700 border-slate-300 hover:border-orange-500'
+                    }`}
+                    aria-pressed={activeTab === t.key}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-50 to-white p-8 rounded-xl border border-orange-200">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                  {tabs.find(x => x.key === activeTab)?.label}
+                </h3>
+                <p className="text-slate-700 text-base leading-relaxed">
+                  {tabs.find(x => x.key === activeTab)?.content}
+                </p>
+              </div>
+
+              <p className="text-slate-600 text-base leading-relaxed border-l-4 border-orange-500 pl-4">
+                Through this commitment, we aim not only to meet expectations but to consistently
+                exceed them, building lasting partnerships founded on trust, integrity, and
+                measurable results.
+              </p>
+            </div>
           </div>
-
-          <div className=" mt-10 max-w-3xl mx-auto text-center">
-            <div className="flex gap-3 items-center">
-              {tabs.map(t => (
-                <button
-                  key={t.key}
-                  onClick={() => setActiveTab(t.key)}
-                  className={`px-4 py-1 rounded-full border transition-all text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 ${
-                    activeTab === t.key
-                      ? 'bg-orange-400 text-white border-transparent'
-                      : 'bg-white text-slate-700 border-slate-200'
-                  }`}
-                  aria-pressed={activeTab === t.key}
-                >
-                  {t.label}
-                </button>
-              ))}
+          <section className="mt-20 border-t pt-16">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <h4 className="text-xl font-bold text-slate-900">Founded</h4>
+                <p className="text-slate-600 mt-2">Built on decades of professional integrity</p>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-slate-900">Growth</h4>
+                <p className="text-slate-600 mt-2">
+                  Expanded across Nigeria serving diverse sectors
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-slate-900">Today</h4>
+                <p className="text-slate-600 mt-2">
+                  Trusted advisors to institutions and businesses
+                </p>
+              </div>
             </div>
+          </section>
 
-            <div className="mt-6 text-slate-700 text-sm md:text-base">
-              {tabs.find(x => x.key === activeTab)?.content}
+          {/* Values Section */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-orange-500 transition-colors">
+              <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white text-xl font-bold">✓</span>
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-3">Integrity</h4>
+              <p className="text-slate-600">
+                We uphold the highest standards of professionalism and ethics in every client
+                engagement.
+              </p>
             </div>
-
-            <div className="mt-6 text-sm text-slate-500">
-              Through this, we aim not only to meet expectations but to consistently exceed them,
-              building lasting partnerships founded on trust and results.
+            <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-orange-500 transition-colors">
+              <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white text-xl font-bold">★</span>
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-3">Excellence</h4>
+              <p className="text-slate-600">
+                Delivering exceptional results through expertise, innovation, and continuous
+                improvement.
+              </p>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-xl border border-slate-200 hover:border-orange-500 transition-colors">
+              <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white text-xl font-bold">◆</span>
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-3">Partnership</h4>
+              <p className="text-slate-600">
+                Building long-term relationships based on trust, transparency, and mutual success.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </main>
+    </AnimatedSection>
   )
 }
 
